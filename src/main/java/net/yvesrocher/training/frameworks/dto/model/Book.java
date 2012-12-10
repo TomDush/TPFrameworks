@@ -26,6 +26,16 @@ public class Book implements Serializable {
 
 	// private Set<BookStore> bookStores = new HashSet<BookStore>();
 
+	public Book() {
+	}
+
+	public Book(String title, String description, Date publication, long pages) {
+		this.title = title;
+		this.description = description;
+		this.publication = publication;
+		this.pages = pages;
+	}
+
 	public Integer getBookId() {
 		return bookId;
 	}
