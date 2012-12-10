@@ -21,6 +21,14 @@ public class Author implements Serializable {
 
 	private Set<Book> books = new HashSet<Book>();
 
+	public Author() {
+	}
+
+	public Author(String firstname, String lastname) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+
 	public Integer getAuthorId() {
 		return authorId;
 	}

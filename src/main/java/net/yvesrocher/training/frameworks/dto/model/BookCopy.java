@@ -31,6 +31,14 @@ public class BookCopy implements Serializable {
 	 */
 	private Customer borrower;
 
+	public BookCopy() {
+	}
+
+	public BookCopy(String code, Book book) {
+		this.code = code;
+		this.book = book;
+	}
+
 	public String getCode() {
 		return code;
 	}
