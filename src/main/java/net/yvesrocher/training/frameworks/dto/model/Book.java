@@ -3,11 +3,17 @@ package net.yvesrocher.training.frameworks.dto.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Référence d'un livre
  *
  * @author Thomas Duchatelle
  */
+@Entity
 public class Book implements Serializable {
 
 	private static final long serialVersionUID = -712909801334685151L;
@@ -36,6 +42,8 @@ public class Book implements Serializable {
 		this.pages = pages;
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getBookId() {
 		return bookId;
 	}
