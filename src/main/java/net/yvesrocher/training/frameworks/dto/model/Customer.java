@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Client de la librairie
  *
- * @author Thomas Duchatelle (duchatelle.thomas@gmail.com)
+ * @author Thomas Duchatelle
  */
 public class Customer implements Serializable {
 

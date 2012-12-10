@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Bibliothèque
  *
- * @author Thomas Duchatelle (duchatelle.thomas@gmail.com)
+ * @author Thomas Duchatelle
  */
 public class BookStore implements Serializable {
 

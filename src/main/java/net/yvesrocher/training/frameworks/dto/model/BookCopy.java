@@ -10,7 +10,7 @@ import java.io.Serializable;
  * des {@link Customer}.
  * </p>
  *
- * @author Thomas Duchatelle (duchatelle.thomas@gmail.com)
+ * @author Thomas Duchatelle
  */
 public class BookCopy implements Serializable {
 

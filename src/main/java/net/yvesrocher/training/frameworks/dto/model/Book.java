@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Référence d'un livre
  *
- * @author Thomas Duchatelle (duchatelle.thomas@gmail.com)
+ * @author Thomas Duchatelle
  */
 public class Book implements Serializable {
 

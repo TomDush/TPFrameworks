@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Auteur de livres
  *
- * @author Thomas Duchatelle (duchatelle.thomas@gmail.com)
+ * @author Thomas Duchatelle
  */
 public class Author implements Serializable {
 
