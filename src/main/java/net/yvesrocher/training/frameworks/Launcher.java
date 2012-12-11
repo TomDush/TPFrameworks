@@ -3,11 +3,13 @@ package net.yvesrocher.training.frameworks;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import net.yvesrocher.training.frameworks.dao.utils.HibernateUtils;
 import net.yvesrocher.training.frameworks.dto.model.Book;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,10 +27,33 @@ public class Launcher {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 
-		// TODO Ecrire le code ici...
+		// Obtention d'une session
+		Session session = sessionFactory.openSession();
+
+		// Debut de la transaction
+		session.beginTransaction();
+		try {
+			session.save(generateBook());
+
+			List<Book> books = session.createQuery("FROM Book").list();
+			LOGGER.info("Book présents : " + books);
+
+			// throw new RuntimeException("Hahahaha SQL Error !");
+			// Commit de la session si c'est OK
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			// On annule tout ce qui a ete fait si une erreur s'est produite
+			if (session.getTransaction().isActive()) session.getTransaction().rollback();
+			LOGGER.error("SQL Error.", e);
+
+		} finally {
+			session.close();
+		}
 
 		LOGGER.info("Done.");
 	}
