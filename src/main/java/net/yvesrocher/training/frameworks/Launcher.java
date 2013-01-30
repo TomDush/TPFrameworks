@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.yvesrocher.training.frameworks.dao.utils.HibernateUtils;
+import net.yvesrocher.training.frameworks.dto.model.Author;
 import net.yvesrocher.training.frameworks.dto.model.Book;
 
 import org.hibernate.SessionFactory;
@@ -28,13 +29,33 @@ public class Launcher {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// Récupère la session factory
 		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 
-		// TODO Ecrire le code de mapping
+		// TODO Configurer les classes du modèle pour les rendre persistente
+		// TODO Ecrire ici le code pour les sauvegarder
 
+		// Ferme la session factory.
+		HibernateUtils.shutdown();
 		LOGGER.info("Done.");
 	}
 
+	/**
+	 * Génère un livre.
+	 *
+	 * @return
+	 * @throws ParseException
+	 */
+	private static Book generateBook() throws ParseException {
+		return generateBooks().get(0);
+	}
+
+	/**
+	 * Génère une liste de livres
+	 *
+	 * @return
+	 * @throws ParseException
+	 */
 	private static List<Book> generateBooks() throws ParseException {
 		List<Book> books = new ArrayList<Book>();
 		books.add(new Book("Le Temple Du Soleil", "Les Aventures de Tintin - Tome 14", dateFormatter.parse("1946-04-26"), 62L));
@@ -45,14 +66,41 @@ public class Launcher {
 		books.add(new Book("L'Enfant des étoiles", "Thorgal - Tome 17", dateFormatter.parse("1984-09-01"), 46L));
 		books.add(new Book("La Cité du dieu perdu", "Thorgal - Tome 17", dateFormatter.parse("1987-10-01"), 46L));
 
-		books.add(new Book("Le Rouge Et Le Noir", "Bon courage...", dateFormatter.parse("1987-10-01"), 46L));
+		books.add(new Book("Le Rouge Et Le Noir", "Bon courage...", dateFormatter.parse("1930-11-01"), 46L));
 		books.add(new Book("L'Histoire Sans Fin", "Vous aussi, plongez dans le monde de Fantasia", dateFormatter.parse("1979-01-01"), 46L));
 
 		return books;
 	}
 
-	private static Book generateBook() throws ParseException {
-		return generateBooks().get(0);
+	/**
+	 * Génère une liste d'auteur et l'associe avec les livres générés par {@link #generateBooks()}
+	 *
+	 * @param books
+	 * @return
+	 */
+	private static List<Author> addAuthorToBook(List<Book> books) {
+		List<Author> authors = new ArrayList<Author>();
+		authors.add(new Author("Hergé", null));
+		authors.add(new Author("Jean", "Van Hamme"));
+		authors.add(new Author("Stendhal", ""));
+		authors.add(new Author("Michael", "Ende"));
+
+		// TODO Décommenter cette partie pour tester l'association avec les auteurs.
+		// if(books.size() >= 8 ) {
+		// books.get(0).setAuthor(authors.get(0));
+		// books.get(1).setAuthor(authors.get(0));
+		// books.get(2).setAuthor(authors.get(0));
+		//
+		// books.get(3).setAuthor(authors.get(1));
+		// books.get(4).setAuthor(authors.get(1));
+		// books.get(5).setAuthor(authors.get(1));
+		//
+		// books.get(6).setAuthor(authors.get(2));
+		//
+		// books.get(7).setAuthor(authors.get(3));
+		// }
+
+		return authors;
 	}
 
 }

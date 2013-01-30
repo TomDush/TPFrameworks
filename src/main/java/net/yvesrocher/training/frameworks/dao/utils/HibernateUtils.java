@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * Utilitaires pour créer des sessions hibernate.
  *
  * <p>
- * Instancie le <i>Singleton</i> <code>SessionFactory</code> et fourni des <code>Session</code>.
+ * Instancie le <i>Singleton</i> <code>SessionFactory</code> et fournit des <code>Session</code>.
  * </p>
  *
  * @author Thomas Duchatelle
@@ -31,8 +31,13 @@ public class HibernateUtils {
 		}
 	}
 
+	/**
+	 * Crée la session factory à partir du fichier <code>hibernate.cfg.xml</code>
+	 *
+	 * @return
+	 */
 	public static SessionFactory getSessionFactory() {
-		if(null == sessionFactory) {
+		if (null == sessionFactory) {
 			sessionFactory = buildSessionFactory();
 		}
 		return sessionFactory;

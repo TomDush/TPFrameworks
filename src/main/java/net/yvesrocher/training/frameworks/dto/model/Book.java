@@ -22,8 +22,10 @@ public class Book implements Serializable {
 
 	private long pages;
 
+	// TODO gérer l'association vers l'auteur
 	// private Author author;
 
+	// TODO gérer l'association vers les librairies
 	// private Set<BookStore> bookStores = new HashSet<BookStore>();
 
 	public Book() {
