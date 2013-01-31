@@ -27,7 +27,12 @@ public class BookCopy implements Serializable {
 	private Book book;
 
 	/**
-	 * Client qui l'a emprunté.
+	 * Librairie dans laquelle l'exemplaire se trouve.
+	 */
+	private BookStore bookStore;
+
+	/**
+	 * Client qui l'a emprunté (ou null si disponible).
 	 */
 	private Customer borrower;
 
@@ -53,6 +58,14 @@ public class BookCopy implements Serializable {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public BookStore getBookStore() {
+		return bookStore;
+	}
+
+	public void setBookStore(BookStore bookStore) {
+		this.bookStore = bookStore;
 	}
 
 	public Customer getBorrower() {

@@ -19,6 +19,7 @@ public class Customer implements Serializable {
 
 	private String email;
 
+	/** Livres empruntés */
 	private Set<BookCopy> borrowedBooks = new HashSet<BookCopy>();
 
 	public Integer getCustomerId() {

@@ -13,11 +13,17 @@ public class BookStore implements Serializable {
 
 	private static final long serialVersionUID = 2249977395919228178L;
 
+	/** Nom de la librairie */
 	private String name;
 
+	/** Ville où est présente la librairie */
 	private String city;
 
+	/** Liste des références disponibles (A COMMENTER POUR LA PARTIE ALLER PLUS LOIN) */
 	private Set<Book> books = new HashSet<Book>();
+
+	/** Exemplaire des livres */
+	// private Set<BookCopy> bookCopies = new HashSet<BookCopy>();
 
 	public String getName() {
 		return name;
@@ -41,9 +47,5 @@ public class BookStore implements Serializable {
 
 	public void setBooks(Set<Book> books) {
 		this.books = books;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }
