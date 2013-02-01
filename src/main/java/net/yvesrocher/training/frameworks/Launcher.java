@@ -58,16 +58,16 @@ public class Launcher {
 	 */
 	private static List<Book> generateBooks() throws ParseException {
 		List<Book> books = new ArrayList<Book>();
-		books.add(new Book("Le Temple Du Soleil", "Les Aventures de Tintin - Tome 14", dateFormatter.parse("1946-04-26"), 62L));
-		books.add(new Book("Tintin au Congo", "Les Aventures de Tintin - Tome 2", dateFormatter.parse("1930-06-05"), 62L));
-		books.add(new Book("On a marché sur la Lune", "Les Aventures de Tintin - Tome 17", dateFormatter.parse("1954-03-30"), 62L));
+		books.add(new Book("9780828850780", "Le Temple Du Soleil", "Les Aventures de Tintin - Tome 14", dateFormatter.parse("1946-04-26"), 62L));
+		books.add(new Book("9780785955757", "Tintin au Congo", "Les Aventures de Tintin - Tome 2", dateFormatter.parse("1930-06-05"), 62L));
+		books.add(new Book("9780828850537", "On a marché sur la Lune", "Les Aventures de Tintin - Tome 17", dateFormatter.parse("1954-03-30"), 62L));
 
-		books.add(new Book("La Magicienne trahie", "Thorgal - Tome 1", dateFormatter.parse("1980-01-01"), 46L));
-		books.add(new Book("L'Enfant des étoiles", "Thorgal - Tome 17", dateFormatter.parse("1984-09-01"), 46L));
-		books.add(new Book("La Cité du dieu perdu", "Thorgal - Tome 17", dateFormatter.parse("1987-10-01"), 46L));
+		books.add(new Book("2-8036-0358-6", "La Magicienne trahie", "Thorgal - Tome 1", dateFormatter.parse("1980-01-01"), 46L));
+		books.add(new Book("2-8036-0448-5", "L'Enfant des étoiles", "Thorgal - Tome 17", dateFormatter.parse("1984-09-01"), 46L));
+		books.add(new Book("2-8036-0639-9", "La Cité du dieu perdu", "Thorgal - Tome 17", dateFormatter.parse("1987-10-01"), 46L));
 
-		books.add(new Book("Le Rouge Et Le Noir", "Bon courage...", dateFormatter.parse("1930-11-01"), 46L));
-		books.add(new Book("L'Histoire Sans Fin", "Vous aussi, plongez dans le monde de Fantasia", dateFormatter.parse("1979-01-01"), 46L));
+		books.add(new Book("978-2-07-041239", "Le Rouge Et Le Noir", "Bon courage...", dateFormatter.parse("1930-11-01"), 830L));
+		books.add(new Book("978-2876770725", "L'Histoire Sans Fin", "Vous aussi, plongez dans le monde de Fantasia", dateFormatter.parse("1979-01-01"), 535L));
 
 		return books;
 	}

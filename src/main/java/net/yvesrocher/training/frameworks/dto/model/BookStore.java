@@ -13,6 +13,9 @@ public class BookStore implements Serializable {
 
 	private static final long serialVersionUID = 2249977395919228178L;
 
+	/** Identifiant base de données de la bibliothèque */
+	private Integer bookStoreId;
+
 	/** Nom de la librairie */
 	private String name;
 
@@ -27,6 +30,14 @@ public class BookStore implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+
+	public Integer getBookStoreId() {
+		return bookStoreId;
+	}
+
+	public void setBookStoreId(Integer bookStoreId) {
+		this.bookStoreId = bookStoreId;
 	}
 
 	public void setName(String name) {

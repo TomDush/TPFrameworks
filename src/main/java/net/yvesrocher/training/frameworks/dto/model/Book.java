@@ -12,14 +12,19 @@ public class Book implements Serializable {
 
 	private static final long serialVersionUID = -712909801334685151L;
 
-	private Integer bookId;
+	/** Identifiant internationnal du livre (<i>International Standard Book Number</i>) */
+	private String isbn;
 
+	/** Titre du livre */
 	private String title;
 
+	/** Description */
 	private String description;
 
+	/** Date de première publication */
 	private Date publication;
 
+	/** Nombre de pages */
 	private long pages;
 
 	// TODO gérer l'association vers l'auteur
@@ -31,19 +36,21 @@ public class Book implements Serializable {
 	public Book() {
 	}
 
-	public Book(String title, String description, Date publication, long pages) {
+	public Book(String isbn, String title, String description, Date publication, long pages) {
+		super();
+		this.isbn = isbn;
 		this.title = title;
 		this.description = description;
 		this.publication = publication;
 		this.pages = pages;
 	}
 
-	public Integer getBookId() {
-		return bookId;
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setBookId(Integer bookId) {
-		this.bookId = bookId;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public String getTitle() {
@@ -76,6 +83,11 @@ public class Book implements Serializable {
 
 	public void setPages(long pages) {
 		this.pages = pages;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [isbn=" + isbn + ", title=" + title + ", publication=" + publication + ", pages=" + pages + "]";
 	}
 
 }
