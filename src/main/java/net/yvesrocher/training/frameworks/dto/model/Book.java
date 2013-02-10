@@ -3,11 +3,13 @@ package net.yvesrocher.training.frameworks.dto.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * Référence d'un livre
@@ -90,7 +92,9 @@ public class Book implements Serializable {
 		this.pages = pages;
 	}
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false)
+	@ManyToOne(optional = false)
+	// cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH },
+	@Cascade({ CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.SAVE_UPDATE, CascadeType.REFRESH })
 	@JoinColumn(name = "author_id")
 	public Author getAuthor() {
 		return author;

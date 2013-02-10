@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -67,13 +68,22 @@ public class BookStore implements Serializable {
 		this.city = city;
 	}
 
-	@OneToMany(mappedBy = "bookStore")
+	@OneToMany(mappedBy = "bookStore", cascade = CascadeType.ALL)
 	public Set<BookCopy> getBookCopies() {
 		return bookCopies;
 	}
 
 	public void setBookCopies(Set<BookCopy> bookCopies) {
 		this.bookCopies = bookCopies;
+	}
+
+	/**
+	 * Ajoute une copie au store
+	 * @param copy
+	 */
+	public void addCopy(BookCopy copy) {
+		bookCopies.add(copy);
+		copy.setBookStore(this);
 	}
 
 	@Override

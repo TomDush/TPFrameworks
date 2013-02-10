@@ -47,7 +47,7 @@ public class BookCopy implements Serializable {
 
 	public BookCopy(String code, Book book) {
 		this.code = code;
-		this.book = book;
+		setBook(book);
 	}
 
 	@Id

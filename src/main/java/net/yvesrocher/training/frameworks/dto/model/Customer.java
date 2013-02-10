@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Client de la librairie
@@ -68,6 +70,7 @@ public class Customer implements Serializable {
 		this.lastname = lastname;
 	}
 
+	@Column(nullable = false, unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -76,6 +79,7 @@ public class Customer implements Serializable {
 		this.email = email;
 	}
 
+	@OneToMany(mappedBy = "borrower")
 	public Set<BookCopy> getBorrowedBooks() {
 		return borrowedBooks;
 	}
