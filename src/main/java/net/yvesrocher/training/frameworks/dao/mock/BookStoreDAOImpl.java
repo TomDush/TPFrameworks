@@ -7,6 +7,9 @@ import java.util.Map;
 import net.yvesrocher.training.frameworks.dao.IBookStoreDAO;
 import net.yvesrocher.training.frameworks.dto.model.BookCopy;
 import net.yvesrocher.training.frameworks.dto.model.BookStore;
+import net.yvesrocher.training.frameworks.exceptions.DAOException;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class BookStoreDAOImpl implements IBookStoreDAO {
 
@@ -35,6 +38,18 @@ public class BookStoreDAOImpl implements IBookStoreDAO {
 	@Override
 	public void save(BookStore bookStore) {
 		stores.put(bookStore.getName(), bookStore);
+
+		// Sauvegarde des dépendances
+		for (BookCopy c : bookStore.getBookCopies()) {
+			saveCopy(c);
+		}
+	}
+
+	private void saveCopy(BookCopy copy) {
+		if (StringUtils.isBlank(copy.getCode())) {
+			throw new DAOException("BookCopy.code must not be null : " + copy);
+		}
+		copies.put(copy.getCode(), copy);
 	}
 
 	@Override
