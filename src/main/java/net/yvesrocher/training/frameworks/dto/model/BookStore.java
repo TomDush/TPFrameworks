@@ -4,14 +4,22 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  * Bibliothèque
  *
  * @author Thomas Duchatelle
  */
+@SuppressWarnings("serial")
+@Entity
 public class BookStore implements Serializable {
-
-	private static final long serialVersionUID = 2249977395919228178L;
 
 	/** Identifiant base de données de la bibliothèque */
 	private Integer bookStoreId;
@@ -22,22 +30,30 @@ public class BookStore implements Serializable {
 	/** Ville où est présente la librairie */
 	private String city;
 
-	/** Liste des références disponibles (A COMMENTER POUR LA PARTIE ALLER PLUS LOIN) */
-	private Set<Book> books = new HashSet<Book>();
-
 	/** Exemplaire des livres */
-	// private Set<BookCopy> bookCopies = new HashSet<BookCopy>();
+	private Set<BookCopy> bookCopies = new HashSet<BookCopy>();
 
-	public String getName() {
-		return name;
+	public BookStore() {
 	}
 
+	public BookStore(String name, String city) {
+		this.name = name;
+		this.city = city;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getBookStoreId() {
 		return bookStoreId;
 	}
 
 	public void setBookStoreId(Integer bookStoreId) {
 		this.bookStoreId = bookStoreId;
+	}
+
+	@Column(nullable = false, unique = true)
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
@@ -52,11 +68,27 @@ public class BookStore implements Serializable {
 		this.city = city;
 	}
 
-	public Set<Book> getBooks() {
-		return books;
+	@OneToMany(mappedBy = "bookStore", cascade = CascadeType.ALL)
+	public Set<BookCopy> getBookCopies() {
+		return bookCopies;
 	}
 
-	public void setBooks(Set<Book> books) {
-		this.books = books;
+	public void setBookCopies(Set<BookCopy> bookCopies) {
+		this.bookCopies = bookCopies;
 	}
+
+	/**
+	 * Ajoute une copie au store
+	 * @param copy
+	 */
+	public void addCopy(BookCopy copy) {
+		bookCopies.add(copy);
+		copy.setBookStore(this);
+	}
+
+	@Override
+	public String toString() {
+		return "BookStore [bookStoreId=" + bookStoreId + ", name=" + name + ", bookCopies=" + bookCopies + "]";
+	}
+
 }

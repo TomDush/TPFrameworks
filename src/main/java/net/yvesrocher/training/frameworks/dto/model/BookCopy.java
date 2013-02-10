@@ -2,6 +2,11 @@ package net.yvesrocher.training.frameworks.dto.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * Exemplaire d'un livre.
  *
@@ -12,6 +17,7 @@ import java.io.Serializable;
  *
  * @author Thomas Duchatelle
  */
+@Entity
 public class BookCopy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,9 +47,10 @@ public class BookCopy implements Serializable {
 
 	public BookCopy(String code, Book book) {
 		this.code = code;
-		this.book = book;
+		setBook(book);
 	}
 
+	@Id
 	public String getCode() {
 		return code;
 	}
@@ -52,6 +59,9 @@ public class BookCopy implements Serializable {
 		this.code = code;
 	}
 
+	/** Aucune cascade définie */
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "book_id")
 	public Book getBook() {
 		return book;
 	}
@@ -60,6 +70,9 @@ public class BookCopy implements Serializable {
 		this.book = book;
 	}
 
+	/** Aucune cascade définie */
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "bookstore_id")
 	public BookStore getBookStore() {
 		return bookStore;
 	}
@@ -68,11 +81,18 @@ public class BookCopy implements Serializable {
 		this.bookStore = bookStore;
 	}
 
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "customer_id")
 	public Customer getBorrower() {
 		return borrower;
 	}
 
 	public void setBorrower(Customer borrower) {
 		this.borrower = borrower;
+	}
+
+	@Override
+	public String toString() {
+		return "BookCopy [code=" + code + ", book=" + book + ", borrower=" + borrower + "]";
 	}
 }

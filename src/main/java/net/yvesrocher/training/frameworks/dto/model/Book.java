@@ -3,11 +3,20 @@ package net.yvesrocher.training.frameworks.dto.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 /**
  * Référence d'un livre
  *
  * @author Thomas Duchatelle
  */
+@Entity
 public class Book implements Serializable {
 
 	private static final long serialVersionUID = -712909801334685151L;
@@ -27,16 +36,13 @@ public class Book implements Serializable {
 	/** Nombre de pages */
 	private long pages;
 
-	// TODO gérer l'association vers l'auteur
-	// private Author author;
-
-	// TODO gérer l'association vers les librairies
-	// private Set<BookStore> bookStores = new HashSet<BookStore>();
+	/** Auteur principal du livre */
+	private Author author;
 
 	public Book() {
 	}
 
-	public Book(String isbn, String title, String description, Date publication, long pages) {
+	public Book(final String isbn, final String title, final String description, final Date publication, final long pages) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -45,11 +51,12 @@ public class Book implements Serializable {
 		this.pages = pages;
 	}
 
+	@Id
 	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
+	public void setIsbn(final String isbn) {
 		this.isbn = isbn;
 	}
 
@@ -57,7 +64,7 @@ public class Book implements Serializable {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -65,7 +72,7 @@ public class Book implements Serializable {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -73,7 +80,7 @@ public class Book implements Serializable {
 		return publication;
 	}
 
-	public void setPublication(Date publication) {
+	public void setPublication(final Date publication) {
 		this.publication = publication;
 	}
 
@@ -81,13 +88,25 @@ public class Book implements Serializable {
 		return pages;
 	}
 
-	public void setPages(long pages) {
+	public void setPages(final long pages) {
 		this.pages = pages;
+	}
+
+	@ManyToOne(optional = false)
+	// cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH },
+	@Cascade({ CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.SAVE_UPDATE, CascadeType.REFRESH })
+	@JoinColumn(name = "author_id")
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(final Author author) {
+		this.author = author;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [isbn=" + isbn + ", title=" + title + ", publication=" + publication + ", pages=" + pages + "]";
+		return "Book [isbn=" + isbn + ", title=" + title + ", publication=" + publication + ", pages=" + pages + ", author=" + author + "]";
 	}
 
 }
