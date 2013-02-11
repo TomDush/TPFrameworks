@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import net.yvesrocher.training.frameworks.dao.IBookDAO;
 import net.yvesrocher.training.frameworks.dao.IBookStoreDAO;
@@ -22,7 +21,6 @@ import net.yvesrocher.training.frameworks.dto.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Named
 public class BddMonitorImpl implements IBddMonitor {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BddMonitorImpl.class);
@@ -38,6 +36,11 @@ public class BddMonitorImpl implements IBddMonitor {
 	@Inject
 	private ICustomerDAO customerDAO;
 
+	/**
+	 * Remarque : PostContruct indique la méthode à appeler dès que le bean est instancié et que toutes ses dépendances sont prêtes.
+	 *
+	 * @throws ParseException
+	 */
 	@PostConstruct
 	public void initDatabase() throws ParseException {
 		LOGGER.info("Initialize database ...");
@@ -66,19 +69,19 @@ public class BddMonitorImpl implements IBddMonitor {
 	@Override
 	public void printAll() {
 		LOGGER.info("Customers :");
-		for(Customer c : customerDAO.findAll()) {
+		for (Customer c : customerDAO.findAll()) {
 			LOGGER.info("\t- {}", c);
 		}
 
 		LOGGER.info("Books :");
-		for(Book b : bookDAO.findAll()) {
+		for (Book b : bookDAO.findAll()) {
 			LOGGER.info("\t- {}", b);
 		}
 
 		LOGGER.info("BookStores :");
-		for(BookStore s : bookStoreDAO.findAll()) {
+		for (BookStore s : bookStoreDAO.findAll()) {
 			LOGGER.info("\t- {}", s);
-			for(BookCopy c : s.getBookCopies()) {
+			for (BookCopy c : s.getBookCopies()) {
 				LOGGER.info("\t\t. {}", c);
 			}
 		}

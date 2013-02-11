@@ -2,8 +2,6 @@ package net.yvesrocher.training.frameworks;
 
 import java.text.ParseException;
 
-import net.yvesrocher.training.frameworks.dao.utils.IBddMonitor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -25,9 +23,8 @@ public class Launcher {
 	public static void main(String[] args) throws ParseException {
 		// ** SPRING
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/books-context.xml", "spring/books-daomock.xml");
-		IBddMonitor monitor = context.getBean(IBddMonitor.class);
 
-		monitor.printAll();
+		// TODO Ecrire le code ici...
 
 		LOGGER.info("Done.");
 	}
