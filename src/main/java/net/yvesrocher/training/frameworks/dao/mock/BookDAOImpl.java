@@ -1,6 +1,8 @@
 package net.yvesrocher.training.frameworks.dao.mock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.yvesrocher.training.frameworks.dao.IBookDAO;
@@ -31,6 +33,11 @@ public class BookDAOImpl implements IBookDAO {
 	@Override
 	public void delete(Book book) {
 		books.remove(book.getIsbn());
+	}
+
+	@Override
+	public List<Book> findAll() {
+		return new ArrayList<Book>(books.values());
 	}
 
 }

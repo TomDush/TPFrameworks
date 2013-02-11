@@ -1,9 +1,12 @@
 package net.yvesrocher.training.frameworks.dao.mock;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import net.yvesrocher.training.frameworks.dao.IBookCopy;
 import net.yvesrocher.training.frameworks.dao.IBookStoreDAO;
 import net.yvesrocher.training.frameworks.dto.model.BookCopy;
 import net.yvesrocher.training.frameworks.dto.model.BookStore;
@@ -11,7 +14,7 @@ import net.yvesrocher.training.frameworks.exceptions.DAOException;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class BookStoreDAOImpl implements IBookStoreDAO {
+public class BookStoreDAOImpl implements IBookStoreDAO, IBookCopy {
 
 	/** Librairies indéxée par leur nom (et non leur id !! */
 	private static Map<String, BookStore> stores = new HashMap<String, BookStore>();
@@ -53,13 +56,18 @@ public class BookStoreDAOImpl implements IBookStoreDAO {
 	}
 
 	@Override
-	public BookCopy findBookCopyById(Serializable id) {
+	public BookCopy findBookCopyByCode(Serializable id) {
 		return copies.get(id);
 	}
 
 	@Override
 	public synchronized String generateNewCode() {
 		return "copycode_" + codeCount++;
+	}
+
+	@Override
+	public List<BookStore> findAll() {
+		return new ArrayList<BookStore>(stores.values());
 	}
 
 }

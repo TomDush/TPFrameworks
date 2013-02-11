@@ -1,8 +1,8 @@
 package net.yvesrocher.training.frameworks.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
-import net.yvesrocher.training.frameworks.dto.model.BookCopy;
 import net.yvesrocher.training.frameworks.dto.model.BookStore;
 
 public interface IBookStoreDAO {
@@ -28,15 +28,8 @@ public interface IBookStoreDAO {
 	void save(BookStore bookStore);
 
 	/**
-	 * Retrouve un exemplaire à partir de son code
-	 * @param id
-	 * @return TODO
-	 */
-	BookCopy findBookCopyById(Serializable id);
-
-	/**
-	 * Génère un nouveau code d'exemplaire
+	 * Liste les tous
 	 * @return
 	 */
-	String generateNewCode();
+	List<BookStore> findAll();
 }

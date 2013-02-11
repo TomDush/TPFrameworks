@@ -1,5 +1,7 @@
 package net.yvesrocher.training.frameworks.dao;
 
+import java.util.List;
+
 import net.yvesrocher.training.frameworks.dto.model.Book;
 
 public interface IBookDAO {
@@ -22,5 +24,7 @@ public interface IBookDAO {
 	 * @param book
 	 */
 	void delete(Book book);
+
+	List<Book> findAll();
 
 }
